@@ -1,0 +1,19 @@
+Xcode 16.4
+Build version 16F6
+== Swift (arm64)
+== Swift (x86_64)
+== Now Playing bridge
+== Bundle
+dist/Islet.app/Contents/Resources/libIsletMediaRemote.dylib: replacing existing signature
+dist/Islet.app: replacing existing signature
+signature ok (ad-hoc)
+total 2664
+drwxr-xr-x   4 runner  staff      128 Nov  9 20:49 .
+drwxr-xr-x  13 runner  staff      416 Nov  9 20:48 ..
+drwxr-xr-x   3 runner  staff       96 Nov  9 20:49 Islet.app
+-rw-r--r--   1 runner  staff  1360316 Nov  9 20:49 Islet.zip
+demo 3: still running (good)
+demo 4: still running (good)
+demo 14: still running (good)
+--- media bridge probe
+{"hello":1}
