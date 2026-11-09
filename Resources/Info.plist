@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key><string>en</string>
+	<key>CFBundleExecutable</key><string>Islet</string>
+	<key>CFBundleIconFile</key><string>AppIcon</string>
+	<key>CFBundleIdentifier</key><string>com.islet.mac</string>
+	<key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+	<key>CFBundleName</key><string>Islet</string>
+	<key>CFBundleDisplayName</key><string>Islet</string>
+	<key>CFBundlePackageType</key><string>APPL</string>
+	<key>CFBundleShortVersionString</key><string>1.0</string>
+	<key>CFBundleVersion</key><string>1</string>
+	<key>LSMinimumSystemVersion</key><string>14.0</string>
+	<key>LSUIElement</key><true/>
+	<key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
+	<key>NSHighResolutionCapable</key><true/>
+	<key>NSHumanReadableCopyright</key><string>Islet</string>
+	<key>NSCalendarsFullAccessUsageDescription</key><string>Islet shows your next meeting and alerts you a few minutes before it starts, with a Join button.</string>
+	<key>NSCalendarsUsageDescription</key><string>Islet shows your next meeting and alerts you a few minutes before it starts.</string>
+	<key>NSAppleEventsUsageDescription</key><string>Islet asks Spotify or Music what is playing if the system's Now Playing information is unavailable.</string>
+	<key>NSDesktopFolderUsageDescription</key><string>Islet shows new screenshots saved to your Desktop so you can copy, mark up or drag them.</string>
+	<key>NSDownloadsFolderUsageDescription</key><string>Islet shows download progress and lets you open finished downloads.</string>
+	<key>NSDocumentsFolderUsageDescription</key><string>Islet shows new screenshots if you save them to Documents.</string>
+</dict>
+</plist>

@@ -1,0 +1,54 @@
+name: build
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  mac:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild -version | tee build.log
+          ./build.sh 2>&1 | tee -a build.log
+      - name: Gallery
+        if: success()
+        run: |
+          set -o pipefail
+          ./dist/Islet.app/Contents/MacOS/Islet --gallery dist/gallery.png 2>&1 | tee -a build.log || echo "gallery failed" | tee -a build.log
+      - name: Launch test
+        if: success()
+        run: |
+          shot() {
+            ./dist/Islet.app/Contents/MacOS/Islet --demo "$1" > "dist/run-$1.log" 2>&1 &
+            P=$!
+            sleep 7
+            if kill -0 $P 2>/dev/null; then echo "demo $1: still running (good)" | tee -a build.log; else echo "demo $1: EXITED" | tee -a build.log; cat "dist/run-$1.log" | tail -30 | tee -a build.log; fi
+            screencapture -x "dist/live-$1.png" || echo "screencapture failed" | tee -a build.log
+            kill $P 2>/dev/null || true
+            sleep 1
+          }
+          shot 3
+          shot 4
+          shot 14
+          echo "--- media bridge probe" | tee -a build.log
+          ( /usr/bin/perl dist/Islet.app/Contents/Resources/mediaremote.pl dist/Islet.app/Contents/Resources/libIsletMediaRemote.dylib islet_stream < /dev/null & P=$!; sleep 3; kill $P 2>/dev/null ) 2>&1 | head -5 | tee -a build.log || true
+      - name: Publish results to the build-output branch
+        if: always()
+        run: |
+          mkdir -p /tmp/out
+          cp build.log /tmp/out/ 2>/dev/null || true
+          cp dist/Islet.zip dist/gallery.png dist/live-*.png /tmp/out/ 2>/dev/null || true
+          echo "${GITHUB_SHA}" > /tmp/out/SOURCE_SHA
+          echo "${{ job.status }}" > /tmp/out/STATUS
+          cd /tmp/out
+          git init -q -b build-output
+          git config user.name "islet-ci"
+          git config user.email "islet-ci@users.noreply.github.com"
+          git add -A
+          git commit -q -m "build ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" build-output
