@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Islet — the top of your screen, alive</title>
+<meta name="description" content="Islet turns your notch, or the top of any screen, into a living island: music, messages, codes, charging, timers and screenshots. Free for Mac, Windows and Android.">
+<meta name="theme-color" content="#050608">
+<meta property="og:title" content="Islet — the top of your screen, alive">
+<meta property="og:description" content="A living island for your notch. Free for Mac, Windows and Android.">
+<meta property="og:image" content="/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="atmos" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- The navigation is an island too: it shows where you are, like a live activity -->
+<header class="nav" id="nav">
+  <a class="nav-brand" href="#top" aria-label="Islet home"><span class="nav-dot"></span>Islet</a>
+  <span class="nav-live" id="navLive" aria-hidden="true"><span class="nav-live-dot"></span><span id="navLiveText">Simulator</span></span>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#simulator">Simulator</a>
+    <a href="#day">A day</a>
+    <a href="#features">Features</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="nav-cta" href="#download">Get Islet</a>
+</header>
+
+<main id="top">
+  <!-- ============================== HERO -->
+  <section class="hero" id="simulator">
+    <p class="eyebrow reveal" style="--d:0">Free · Mac · Windows · Android</p>
+    <h1 class="hero-title">
+      <span class="w reveal" style="--d:1">The</span> <span class="w reveal" style="--d:2">top</span> <span class="w reveal" style="--d:3">of</span> <span class="w reveal" style="--d:4">your</span> <span class="w reveal" style="--d:5">screen,</span>
+      <em class="w reveal" style="--d:7">alive.</em>
+    </h1>
+    <p class="hero-sub reveal" style="--d:8">Islet turns your notch, or the top of any screen, into a living island. Music, messages, codes, charging and timers appear right where your eyes already are, then get out of the way.</p>
+    <div class="hero-cta reveal" style="--d:9">
+      <a class="btn btn-primary" id="heroDownload" href="#download">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+        <span id="heroDownloadLabel">Download free</span>
+      </a>
+      <a class="btn btn-ghost" href="#download">All platforms</a>
+    </div>
+    <p class="hero-note reveal" style="--d:10">No account · No ads · Nothing leaves your device</p>
+
+    <div class="stage reveal" style="--d:11" id="stage">
+      <div class="stage-top">
+        <div class="seg" role="tablist" aria-label="Choose a device">
+          <button role="tab" data-device="mac" aria-selected="true">Mac</button>
+          <button role="tab" data-device="win" aria-selected="false">Windows</button>
+          <button role="tab" data-device="android" aria-selected="false">Android</button>
+          <span class="seg-pill" aria-hidden="true"></span>
+        </div>
+        <p class="stage-hint"><span class="live-dot"></span>Live simulator · tap the island, or try a moment below</p>
+      </div>
+
+      <div class="device-fit" id="heroFit">
+        <div class="device" id="heroDevice" data-device="mac"></div>
+      </div>
+
+      <div class="remote glass" id="remote" role="toolbar" aria-label="Try a moment">
+        <button data-scene="music"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>Music</button>
+        <button data-scene="message"><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5Z"/></svg>Message</button>
+        <button data-scene="otp"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg>Code</button>
+        <button data-scene="charging"><svg viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6Z"/></svg>Charge</button>
+        <button data-scene="timer"><svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 10v3.5l2.5 1.5M10 3h4"/></svg>Timer</button>
+        <button data-scene="shot"><svg viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><circle cx="12" cy="12" r="3"/></svg>Screenshot</button>
+        <button data-scene="download"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>Download</button>
+        <button data-scene="call"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Call</button>
+        <button data-scene="volume"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Volume</button>
+        <button data-scene="launcher"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="2"/></svg>Launcher</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== A DAY -->
+  <section class="day" id="day">
+    <header class="sec-head">
+      <p class="eyebrow">Scroll through a day</p>
+      <h2>A day with <em>Islet</em></h2>
+    </header>
+    <div class="day-grid">
+      <div class="day-sticky">
+        <div class="device-fit" id="dayFit">
+          <div class="device" id="dayDevice" data-device="mac"></div>
+        </div>
+        <div class="day-clock" aria-hidden="true"><span id="dayClock">07:58</span></div>
+      </div>
+      <ol class="day-steps">
+        <li class="step glass" data-scene="charging" data-time="07:58"><time>07:58</time><h3>Plugged in.</h3><p>A green glow tells you it's charging, and how long until it's full.</p></li>
+        <li class="step glass" data-scene="focus" data-time="09:00"><time>09:00</time><h3>Focus begins.</h3><p>A quiet countdown sits by the notch. Everything else can wait for the break.</p></li>
+        <li class="step glass" data-scene="otp" data-time="10:12"><time>10:12</time><h3>Your bank sends a code.</h3><p>Islet spots it. One click and 482913 is on your clipboard.</p></li>
+        <li class="step glass" data-scene="music" data-time="12:30"><time>12:30</time><h3>Lunch playlist.</h3><p>Album art on the left, the beat on the right. Then it steps back and keeps playing.</p></li>
+        <li class="step glass" data-scene="call" data-time="14:00"><time>14:00</time><h3>On a call.</h3><p>A call timer and a mute button, right where you're already looking.</p></li>
+        <li class="step glass" data-scene="shot" data-time="16:20"><time>16:20</time><h3>Screenshot.</h3><p>Islet stepped aside so it isn't in the picture. Now copy it, mark it up or drag it anywhere.</p></li>
+        <li class="step glass" data-scene="download" data-time="18:05"><time>18:05</time><h3>Download done.</h3><p>Open it straight from the island. No hunting through folders.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================== FEATURES -->
+  <section class="features" id="features">
+    <header class="sec-head">
+      <p class="eyebrow">What it does</p>
+      <h2>Small island. <em>Big</em> manners.</h2>
+    </header>
+    <div class="bento">
+      <article class="card glass span2">
+        <div class="mini"><div class="mi mi-music"><span class="art"></span><span class="gap"></span><span class="bars"><i></i><i></i><i></i><i></i></span></div></div>
+        <h3>Music that steps back</h3>
+        <p>When a song starts it shows for a moment, then plays on in the background. Hover the top edge to bring it back; the launcher has play, pause and skip.</p>
+      </article>
+      <article class="card glass">
+        <div class="mini"><div class="mi mi-card"><span class="ico ico-green"></span><span class="lines"><b></b><i></i></span></div></div>
+        <h3>Notifications, then gone</h3>
+        <p>Every app, one calm card. Similar ones stack, you can snooze, and a flick up dismisses.</p>
+      </article>
+      <article class="card glass">
+        <div class="mini"><div class="mi mi-otp"><span class="code">482 913</span><span class="chip">Copy</span></div></div>
+        <h3>Codes, copied</h3>
+        <p>One-time codes are spotted automatically. One click copies them.</p>
+      </article>
+      <article class="card glass">
+        <div class="mini"><div class="mi mi-charge"><span class="bolt"></span><span class="gap"></span><span class="pct">82%</span></div></div>
+        <h3>Charging you can see</h3>
+        <p>A green glow when you plug in, and a warning before your battery runs low.</p>
+      </article>
+      <article class="card glass span2">
+        <div class="mini"><div class="mi mi-launch"><span class="q">Search apps · type 10m for a timer</span><span class="apps"><i></i><i></i><i></i><i></i><i></i><i></i></span></div></div>
+        <h3>A launcher in the notch</h3>
+        <p>Click the island, or press <kbd>⌥ Space</kbd> on Mac and <kbd>Ctrl Alt Space</kbd> on Windows. Open apps, start a timer or a focus session, see what you missed.</p>
+      </article>
+      <article class="card glass">
+        <div class="mini"><div class="mi mi-hide"><span class="frame"></span></div></div>
+        <h3>Out of your screenshots</h3>
+        <p>It steps aside while you capture and never appears in screen sharing.</p>
+      </article>
+      <article class="card glass span2">
+        <div class="mini"><div class="mi mi-timer"><span class="ring"></span><span class="gap"></span><span class="t">24:59</span></div></div>
+        <h3>Focus and timers</h3>
+        <p>Focus rounds with breaks, and timers that count down beside the notch.</p>
+      </article>
+      <article class="card glass span2">
+        <div class="mini"><div class="mi mi-lock"><span class="shield"></span></div></div>
+        <h3>Private by design</h3>
+        <p>Everything runs on your device. No account, no tracking, no internet needed.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================== DOWNLOAD -->
+  <section class="download" id="download">
+    <header class="sec-head">
+      <p class="eyebrow">Free download</p>
+      <h2>Get Islet. <em>It's free.</em></h2>
+      <p class="sec-sub">One small file. No sign-up, no installer wizard, no ads.</p>
+    </header>
+    <div class="dl-grid">
+      <article class="dl glass" data-os="mac">
+        <span class="dl-badge">Recommended for you</span>
+        <svg class="dl-glyph" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="9" width="34" height="23" rx="3"/><path d="M20 9h8v2.2a1.3 1.3 0 0 1-1.3 1.3h-5.4A1.3 1.3 0 0 1 20 11.2Z" class="fill"/><path d="M3 36h42l-2.5 3.2a2 2 0 0 1-1.6.8H7.1a2 2 0 0 1-1.6-.8Z"/></svg>
+        <h3>Islet for Mac</h3>
+        <p class="dl-meta">Version 1.0 · macOS 14 or later<br>Apple silicon &amp; Intel · 1.4 MB</p>
+        <a class="btn btn-primary dl-btn" href="/downloads/Islet-Mac.zip" download data-file="mac">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>Download .zip
+        </a>
+        <ol class="dl-steps">
+          <li>Unzip and drag <b>Islet</b> into Applications.</li>
+          <li>First open: System Settings › Privacy &amp; Security › <b>Open Anyway</b>.</li>
+          <li>Allow <b>Full Disk Access</b> so notifications can appear.</li>
+        </ol>
+        <button class="sum" data-sum="8259e0f77d1a2094de9ebc1c9d484de5eec9904bb7831924327e0a44f22d4454" title="Copy SHA-256">SHA-256</button>
+      </article>
+
+      <article class="dl glass" data-os="win">
+        <span class="dl-badge">Recommended for you</span>
+        <svg class="dl-glyph" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="38" height="25" rx="3"/><path d="M17 41h14M24 33v8"/><rect x="19.5" y="11" width="9" height="2.6" rx="1.3" class="fill"/></svg>
+        <h3>Islet for Windows</h3>
+        <p class="dl-meta">Version 1.0 · Windows 10 &amp; 11, 64-bit<br>Portable, nothing to install · 680 KB</p>
+        <a class="btn btn-primary dl-btn" href="/downloads/Islet-Windows.exe" download data-file="win">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>Download .exe
+        </a>
+        <ol class="dl-steps">
+          <li>Run <b>Islet-Windows.exe</b>. That's it.</li>
+          <li>If SmartScreen appears: <b>More info</b> › <b>Run anyway</b>.</li>
+          <li>It lives in your tray. <b>Ctrl Alt Space</b> opens the launcher.</li>
+        </ol>
+        <button class="sum" data-sum="2859dbed8bcddb93b6b6e806b4ab8d164986d5bf9e5bec76ad8ea6782fb581bb" title="Copy SHA-256">SHA-256</button>
+      </article>
+
+      <article class="dl glass" data-os="android">
+        <span class="dl-badge">Recommended for you</span>
+        <svg class="dl-glyph" viewBox="0 0 48 48" aria-hidden="true"><rect x="13" y="4" width="22" height="40" rx="5"/><rect x="20" y="7.2" width="8" height="3" rx="1.5" class="fill"/></svg>
+        <h3>Islet for Android</h3>
+        <p class="dl-meta">Version 1.6 · Android 8.0 or later<br>Wraps your front camera · 190 KB</p>
+        <a class="btn btn-primary dl-btn" href="/downloads/Islet-Android.apk" download data-file="android">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>Download .apk
+        </a>
+        <ol class="dl-steps">
+          <li>Open the APK and allow installs from your browser.</li>
+          <li>Open Islet and turn on <b>Accessibility</b> and <b>Notification access</b>.</li>
+          <li>Done. The island now lives around your camera.</li>
+        </ol>
+        <button class="sum" data-sum="e2464c68d40d35c9727182ded288d25e2636c9236029cb59d9f1ad10fc7e4ea7" title="Copy SHA-256">SHA-256</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ -->
+  <section class="faq" id="faq">
+    <header class="sec-head">
+      <p class="eyebrow">Questions</p>
+      <h2>Good to <em>know</em></h2>
+    </header>
+    <div class="faq-list">
+      <details class="glass"><summary>Is Islet really free?</summary><p>Yes. No trial, no ads, no account, no in-app purchases.</p></details>
+      <details class="glass"><summary>My screen has no notch. Will it work?</summary><p>Yes. On screens without a notch (most Windows PCs, external displays), Islet draws its own island at the top centre. You can choose a floating pill or a notch shape.</p></details>
+      <details class="glass"><summary>Why does my Mac or PC warn me when I open it?</summary><p>Islet isn't sold through the App Store or Microsoft Store, so Apple and Microsoft show a one-time warning for apps they haven't reviewed. The steps under each download get you past it once; after that it opens normally. You can compare the file's SHA-256 with the one shown above.</p></details>
+      <details class="glass"><summary>What does Islet collect?</summary><p>Nothing. Everything happens on your device and nothing is sent anywhere. It doesn't even need an internet connection.</p></details>
+      <details class="glass"><summary>Which music apps work?</summary><p>Anything that shows up in your system's media controls: Spotify, Apple Music, YouTube in your browser, podcasts and more.</p></details>
+      <details class="glass"><summary>How do I quit or uninstall it?</summary><p>Right-click Islet's tray or menu-bar icon and choose Quit. To uninstall, delete the app. On Windows, turn off "Start with Windows" in Islet's settings first.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-island" aria-hidden="true"><span></span></div>
+  <p>Islet. Made for the top of your screen.</p>
+  <p class="foot-small">Free for Mac, Windows and Android · © 2026</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/app.js" defer></script>
+</body>
+</html>
